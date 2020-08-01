@@ -1,0 +1,11 @@
+{
+  "name": "iplookup",
+  "version": "0.0.1",
+  "description": "Eine API um die IP des Clients zu bekommen.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Raphael Bernhart",
+  "license": "ISC"
+}
