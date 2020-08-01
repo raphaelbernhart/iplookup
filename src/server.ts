@@ -6,11 +6,16 @@ dotenv.config()
 
 const app = express()
 
+// Config App
+app.set(
+    'trust proxy', true
+)
+
 // Middleware
 app.use(
     bodyParser.json(),
     cors(),
-    express.json()
+    express.json(),
 )
 
 // Router
