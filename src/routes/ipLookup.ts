@@ -11,7 +11,6 @@ export default async function (req: Request, res: Response) {
         "protocol": req.protocol,
         "httpVersion": httpV,        
         "headers": req.headers,
-        "proxys": req.ips,
         // "location": location
     };
 
