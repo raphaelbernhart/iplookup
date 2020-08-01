@@ -1,6 +1,6 @@
 {
   "name": "iplookup",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Eine API um die IP des Clients zu bekommen.",
   "main": "server.js",
   "scripts": {
