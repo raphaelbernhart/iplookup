@@ -1,10 +1,13 @@
-import express from 'express'
+import express, { Application, Request, Response, Router } from 'express'
 import cors from 'cors'
 import bodyParser from 'body-parser'
 import dotenv from 'dotenv'
 dotenv.config()
 
-const app = express()
+// Helper
+import Logger from './helper/logging'
+
+const app: Application = express()
 
 // Config App
 app.set(
@@ -21,17 +24,25 @@ app.use(
 // Router
 import ipLookup from './routes/ipLookup'
 
-const router = express.Router()
+const router: Router = express.Router()
 
 // Routes
-app.use("/", ipLookup)
+app.get("/", ipLookup);
+
+// Routes Error
+app.get("*", (req: Request, res: Response) => {
+    const status: number = 400;
+
+    res.status(status).json({
+        error: {
+            status: status,
+            message: "Route was not found"
+        }
+    });
+})
 
 const port = process.env.PORT
 
-if(process.env.NODE_ENV == "development") {
-    console.log("\x1b[36m\x1b[4mDEVELOPMENT MODE");
-    app.listen(port, () => console.log(`\x1b[33m\x1b[4mServer succesfully started on port ${port}\x1b[0m`));
-}
-else if(process.env.NODE_ENV == "production") {
-    app.listen(port, () => console.log(`\x1b[32m` + "[IPL] " + `Production Server started on port ${port}\x1b[0m`));
-}
+app.listen(port, () => {
+    Logger.success(`IPLookup(${process.env.npm_package_version}) started on port ${port}`);
+});
