@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
       - name: iplookup
-        image: raphy02/portfolio:latest
+        image: raphy02/iplookup:latest
         ports:
         - containerPort: 80
 
