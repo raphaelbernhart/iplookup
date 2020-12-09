@@ -9,15 +9,12 @@ export default async function (req: Request, res: Response) {
         ip_addr: ip,
         protocol: req.protocol,
         httpVersion: httpV,        
-        headers: {
-            connection: req.headers.connection,
-            "cache-control": req.headers["cache-control"],
-            "user-agent": req.headers["user-agent"],
-
-        },
+        headers: {},
         path: req.path,
         subdomains: req.subdomains,
     };
+
+    Object.assign(data.headers, req.headers);
 
     res.status(200).json(data);
 }

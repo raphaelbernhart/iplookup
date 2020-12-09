@@ -22,9 +22,13 @@ spec:
     spec:
       containers:
       - name: iplookup
-        image: raphy02/portfolio:latest
+        image: raphy02/iplookup:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
+        env:
+        - name: PORT
+          value: 80
 
 ---
 
