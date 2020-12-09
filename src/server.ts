@@ -41,7 +41,7 @@ app.get("*", (req: Request, res: Response) => {
     });
 })
 
-const port = process.env.PORT
+const port = process.env.PORT ? process.env.PORT : 5000;
 
 app.listen(port, () => {
     Logger.success(`IPLookup(${process.env.npm_package_version}) started on port ${port}`);
