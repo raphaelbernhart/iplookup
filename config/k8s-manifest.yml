@@ -23,6 +23,7 @@ spec:
       containers:
       - name: iplookup
         image: raphy02/iplookup:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
 
