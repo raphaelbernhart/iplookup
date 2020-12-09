@@ -1,13 +1,20 @@
-FROM nginx:1.17.0-alpine AS production
+FROM node:12.18.3-alpine AS build
 WORKDIR /app
 
-COPY ./ /app
+COPY package*.json ./
 
-RUN rm /etc/nginx/conf.d/default.conf
-COPY /config/nginx.conf /etc/nginx/conf.d/
+RUN npm install
 
-VOLUME [ "/var/log/nginx" ]
+COPY . /app
+RUN npm run build
 
-ENTRYPOINT [ "nginx", "-g", "daemon off;" ]
+FROM node:12.18.3-alpine AS production
+WORKDIR /app
 
-EXPOSE 80
+COPY package*.json ./
+
+RUN npm install --production
+
+COPY --from=build /app/dist /app
+
+CMD [ "npm", "start" ]
