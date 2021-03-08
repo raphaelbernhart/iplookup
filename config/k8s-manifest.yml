@@ -22,13 +22,15 @@ spec:
     spec:
       containers:
       - name: iplookup
-        image: raphy02/iplookup:latest
+        image: registry.raphaelbernhart.at/raphaelbernhart/iplookup:1.1.0
+        env:
+        - name: PORT
+          value: '80'
         imagePullPolicy: Always
         ports:
         - containerPort: 80
-        env:
-        - name: PORT
-          value: 80
+      imagePullSecrets:
+        - name: regcred
 
 ---
 
